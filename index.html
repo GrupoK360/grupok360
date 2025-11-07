@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta    <!-- Assessment Form -->   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist de Maturidade em Infraestrutura de TI</title>
+    <link rel="stylesheet" href="checklist.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="logo-container">
+                <img src="image/grupo-know-how-360-logo.png.png" alt="Grupo Know-How 360" class="company-logo">
+            </div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Checklist de Maturidade em Infraestrutura de TI</h1>
+                    <p class="hero-description">
+                        Avalie o nível de maturidade da sua infraestrutura tecnológica com este diagnóstico completo. 
+                        Identifique pontos fortes, oportunidades de melhoria e áreas críticas que exigem atenção imediata.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="scrollToAssessment()">Iniciar avaliação</button>
+                        <button class="btn btn-secondary" onclick="toggleHowItWorks()">Como funciona</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="server-room-illustration"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- How It Works Section -->
+    <section id="howItWorks" class="how-it-works hidden">
+        <div class="container">
+            <h2>Como funciona a avaliação</h2>
+            <div class="how-cards">
+                <div class="how-card">
+                    <div class="how-icon">⏱️</div>
+                    <h3>Rápido e Simples</h3>
+                    <p>Leva menos de 5 minutos para completar a avaliação</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-icon">📈</div>
+                    <h3>Resultado instantâneo</h3>
+                    <p>Veja em tempo real o nível de maturidade da sua infraestrutura de TI</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-icon">💡</div>
+                    <h3>Diagnóstico claro</h3>
+                    <p>Receba um feedback objetivo: Verde para bom, Amarelo para atenção, Vermelho para urgente</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Score Display -->
+    <div id="scoreDisplay" class="score-display hidden">
+        <div class="score-container">
+            <div class="score-circle">
+                <svg class="score-svg" viewBox="0 0 200 200">
+                    <circle class="score-bg" cx="100" cy="100" r="90"></circle>
+                    <circle id="scoreCircle" class="score-progress" cx="100" cy="100" r="90"></circle>
+                </svg>
+                <div class="score-text">
+                    <span id="scoreValue">0</span>%
+                </div>
+            </div>
+            <div class="score-status">
+                <h3 id="scoreTitle">Sua pontuação</h3>
+                <p id="scoreDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress and Score Bar -->
+    <div class="progress-container">
+        <div class="progress-section">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text">
+                <span id="progressText">0%</span> concluído
+            </div>
+        </div>
+        <div class="score-section">
+            <div class="score-circle">
+                <svg class="score-svg" viewBox="0 0 200 200">
+                    <circle class="score-bg" cx="100" cy="100" r="90"></circle>
+                    <circle id="scoreCircle" class="score-progress" cx="100" cy="100" r="90"></circle>
+                </svg>
+                <div class="score-text">
+                    <span id="scoreValue">0</span>%
+                </div>
+            </div>
+            <div class="score-status">
+                <h3 id="scoreTitle">Sua pontuação</h3>
+                <p id="scoreDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assessment Form -->
+    <main id="assessmentSection" class="assessment">
+        <div class="container">
+            <form id="assessmentForm">
+                <!-- Pillar 1: Infraestrutura -->
+                <section class="pillar">
+                    <h2 class="pillar-title">
+                        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+                        </svg>
+                        Pilar 1: Infraestrutura
+                    </h2>
+                    <div class="questions-grid">
+                        <div class="question-card">
+                            <h3>Gestão de Serviços em Nuvem</h3>
+                            <p>A empresa utiliza serviços em nuvem com gestão ativa e governança definida?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="infra-1" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="infra-1" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Controle de Custos Cloud</h3>
+                            <p>Há controle de custos e relatórios de consumo implementados (tags, budgets, alertas)?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="infra-2" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="infra-2" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Backups e Monitoramento</h3>
+                            <p>Existe backup automatizado e monitoramento contínuo das cargas na nuvem?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="infra-3" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="infra-3" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Ambiente Híbrido Integrado</h3>
+                            <p>O ambiente híbrido (on-premises + nuvem) é gerenciado de forma integrada e segura?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="infra-4" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="infra-4" data-value="nao">Não</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pillar 2: Segurança da Informação -->
+                <section class="pillar">
+                    <h2 class="pillar-title">
+                        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" fill="currentColor"/>
+                        </svg>
+                        Pilar 2: Segurança da Informação
+                    </h2>
+                    <div class="questions-grid">
+                        <div class="question-card">
+                            <h3>Política Formal de Segurança</h3>
+                            <p>Existe política formal de segurança aprovada pela direção e comunicada a todos?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="seg-1" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="seg-1" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Endpoint Protection</h3>
+                            <p>Há solução de proteção de endpoint (EDR/Antivírus) gerenciada e atualizada?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="seg-2" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="seg-2" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Atualizações Automáticas</h3>
+                            <p>Os sistemas recebem atualizações automáticas de segurança regularmente?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="seg-3" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="seg-3" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Testes de Vulnerabilidade</h3>
+                            <p>São realizados testes e análises de vulnerabilidade de forma periódica?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="seg-4" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="seg-4" data-value="nao">Não</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pillar 3 & 4: Credenciais e E-mail -->
+                <section class="pillar">
+                    <h2 class="pillar-title">
+                        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z" fill="currentColor"/>
+                        </svg>
+                        Pilares 3 e 4: Credenciais e E-mail
+                    </h2>
+                    <div class="dual-section">
+                        <div class="sub-section">
+                            <h3 class="sub-title">Credenciais e Acessos</h3>
+                            <div class="question-card">
+                                <h4>Identidades Centralizadas</h4>
+                                <p>Controle centralizado (AD local ou Entra ID)?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="cred-1" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="cred-1" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>MFA Implementado</h4>
+                                <p>Autenticação multifator ativa para todos os usuários?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="cred-2" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="cred-2" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>Política de Senhas</h4>
+                                <p>Política formal e revisão periódica de acessos?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="cred-3" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="cred-3" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>Fluxo de Contas</h4>
+                                <p>Processo controlado de criação/desativação?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="cred-4" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="cred-4" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section">
+                            <h3 class="sub-title">Serviço de E-mail</h3>
+                            <div class="question-card">
+                                <h4>Configuração SPF/DKIM/DMARC</h4>
+                                <p>Domínio configurado com protocolos de segurança?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="email-1" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="email-1" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>Arquivamento e Retenção</h4>
+                                <p>Política de arquivamento e retenção implementada?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="email-2" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="email-2" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>Ambiente Seguro</h4>
+                                <p>Hospedagem em ambiente seguro (ex: Microsoft 365)?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="email-3" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="email-3" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>Controles Adicionais</h4>
+                                <p>Acesso móvel controlado e anti-phishing ativo?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="email-4" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="email-4" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pillar 5 & 6: Armazenamento e Firewall -->
+                <section class="pillar">
+                    <h2 class="pillar-title">
+                        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z" fill="currentColor"/>
+                        </svg>
+                        Pilares 5 e 6: Armazenamento e Firewall
+                    </h2>
+                    <div class="dual-section">
+                        <div class="sub-section">
+                            <h3 class="sub-title">File Server e Armazenamento</h3>
+                            <div class="question-card">
+                                <h4>Permissões por Grupo</h4>
+                                <p>Controle implementado?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="storage-1" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="storage-1" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>Versionamento e Auditoria</h4>
+                                <p>Trilha de arquivos ativa?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="storage-2" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="storage-2" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>Backup Automatizado</h4>
+                                <p>Backup seguro configurado?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="storage-3" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="storage-3" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>Acesso Remoto Seguro</h4>
+                                <p>Possibilidade implementada?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="storage-4" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="storage-4" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section">
+                            <h3 class="sub-title">Firewall e Perímetro</h3>
+                            <div class="question-card">
+                                <h4>Firewall Corporativo</h4>
+                                <p>Dedicado e configurado?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="firewall-1" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="firewall-1" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>Segmentação de Rede</h4>
+                                <p>LAN, DMZ, Wi-Fi separados?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="firewall-2" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="firewall-2" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>VPN Corporativa</h4>
+                                <p>Acesso controlado implementado?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="firewall-3" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="firewall-3" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>Revisão de Regras</h4>
+                                <p>Documentação periódica?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="firewall-4" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="firewall-4" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pillar 7 & 8: Compliance e Monitoramento -->
+                <section class="pillar">
+                    <h2 class="pillar-title">
+                        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" fill="currentColor"/>
+                        </svg>
+                        Pilares 7 e 8: Compliance e Monitoramento
+                    </h2>
+                    <div class="questions-grid grid-two-columns">
+                        <div class="question-card">
+                            <h3>Licenciamento</h3>
+                            <p>Softwares com licenças válidas?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="comp-1" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="comp-1" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Controle Central</h3>
+                            <p>Gestão centralizada de licenças?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="comp-2" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="comp-2" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Auditorias</h3>
+                            <p>Compliance auditado periodicamente?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="comp-3" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="comp-3" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>LGPD</h3>
+                            <p>Conformidade com LGPD implementada?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="comp-4" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="comp-4" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Monitoramento Contínuo</h3>
+                            <p>Servidores, rede e performance monitorados ativamente?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="mon-1" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="mon-1" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Gestão de Incidentes</h3>
+                            <p>Sistema de chamados técnicos implementado e funcional?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="mon-2" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="mon-2" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Alertas Críticos</h3>
+                            <p>Notificações automáticas para falhas críticas configuradas?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="mon-3" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="mon-3" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Indicadores e Relatórios</h3>
+                            <p>KPIs de TI definidos e relatórios gerados regularmente?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="mon-4" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="mon-4" data-value="nao">Não</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pillar 9: Backups e Disaster Recovery -->
+                <section class="pillar">
+                    <h2 class="pillar-title">
+                        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z" fill="currentColor"/>
+                        </svg>
+                        Pilar 9: Backups e Disaster Recovery
+                    </h2>
+                    <div class="dual-section">
+                        <div class="sub-section">
+                            <h3 class="sub-title">Backups</h3>
+                            <div class="question-card">
+                                <h4>Política Formal de Backup</h4>
+                                <p>Frequência e retenção definidas e documentadas?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="backup-1" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="backup-1" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>Armazenamento Off-Site</h4>
+                                <p>Backups armazenados fora do ambiente local ou em nuvem?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="backup-2" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="backup-2" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>Testes de Restauração</h4>
+                                <p>Testes periódicos realizados e documentados?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="backup-3" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="backup-3" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>Criptografia e Monitoramento</h4>
+                                <p>Dados criptografados e monitorados continuamente?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="backup-4" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="backup-4" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section">
+                            <h3 class="sub-title">Disaster Recovery</h3>
+                            <div class="question-card">
+                                <h4>Plano Formal de DR</h4>
+                                <p>Plano de recuperação de desastres (DRP) documentado?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="dr-1" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="dr-1" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>Redundância de Sistemas</h4>
+                                <p>Sistemas críticos com redundância implementada?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="dr-2" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="dr-2" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>Testes de Contingência</h4>
+                                <p>Simulações de contingência realizadas periodicamente?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="dr-3" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="dr-3" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                            <div class="question-card">
+                                <h4>RTO/RPO Definidos</h4>
+                                <p>Objetivos de recuperação definidos e revisados?</p>
+                                <div class="button-group">
+                                    <button type="button" class="btn-option" data-question="dr-4" data-value="sim">Sim</button>
+                                    <button type="button" class="btn-option" data-question="dr-4" data-value="nao">Não</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pillar 10 & 11: Governança e Colaboração -->
+                <section class="pillar">
+                    <h2 class="pillar-title">
+                        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="currentColor"/>
+                        </svg>
+                        Pilares 10 e 11: Governança e Colaboração
+                    </h2>
+                    <div class="questions-grid grid-two-columns">
+                        <div class="question-card">
+                            <h3>Políticas Documentadas</h3>
+                            <p>Uso aceitável e segurança formalizados?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="gov-1" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="gov-1" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Auditorias Internas</h3>
+                            <p>Registro de auditorias e revisões de TI?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="gov-2" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="gov-2" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Treinamentos</h3>
+                            <p>Colaboradores treinados em segurança?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="gov-3" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="gov-3" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Controle de Ativos</h3>
+                            <p>Rastreabilidade dos ativos de TI implementada?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="gov-4" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="gov-4" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Ferramentas Padronizadas</h3>
+                            <p>Teams, SharePoint e outras ferramentas padronizadas na organização?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="colab-1" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="colab-1" data-value="nao">Não</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3>Controle de Permissões</h3>
+                            <p>Permissões em sites e canais gerenciadas adequadamente?</p>
+                            <div class="button-group">
+                                <button type="button" class="btn-option" data-question="colab-2" data-value="sim">Sim</button>
+                                <button type="button" class="btn-option" data-question="colab-2" data-value="nao">Não</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="submit-section">
+                    <button type="button" class="btn btn-large btn-submit" onclick="calculateResults()">Ver resultado</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Grupo Know-How 360. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="checklist.js"></script>
+</body>
+</html>
